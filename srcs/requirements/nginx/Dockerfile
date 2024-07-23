@@ -1,11 +1,11 @@
-FROM Debian:buster
+FROM debian:buster
 
-RUN 
+#RUN 
 
-COPY
+#COPY
 
-RUN 
+#RUN 
 
-EXPOSE 443
+#EXPOSE 443
 
-ENTRYPOINT [ "executable" ]
+#ENTRYPOINT [ "executable" ]
