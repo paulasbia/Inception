@@ -15,6 +15,13 @@ RUN openssl req -x509 -nodes -out \
     -subj "/C=PT/ST=IDF/L=Lisboa/O=42/OU=42/CN=pde-souz.42.fr/UID=pde-souz"
 
 RUN mkdir -p /var/run/nginx
-#EXPOSE 443
+
+RUN chmod 755 /var/www/html
+
+RUN chown -R www-data:www-data /var/www/html
+
+# EXPOSE 443
+
+CMD [ "nginx", "-g", "daemon off;" ]
 
 #ENTRYPOINT [ "executable" ]
