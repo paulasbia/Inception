@@ -5,7 +5,7 @@ RUN apt update && \
     apt install vim -y && \
     apt install curl -y 
 
-COPY conf/nginx.conf /etc/nginx/nginx.conf
+COPY conf/nginx.conf /etc/nginx/sites-avaiable/nginx.conf
 
 RUN mkdir -p /etc/nginx/ssl
 
