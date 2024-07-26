@@ -6,3 +6,4 @@ RUN apt-get update &&\
 
 COPY conf/mysqld.conf /etc/mysql/mariadb.conf.d/mysqld.conf
 
+COPY tools/mariadb.sh /root/mariadb.sh
