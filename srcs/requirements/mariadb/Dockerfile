@@ -14,7 +14,7 @@ COPY tools/mariadb.sh .
 
 RUN chmod +x mariadb.sh
 
-EXPOSE 3306
+# EXPOSE 3306
 
-# Define the script to be run when the container starts
-ENTRYPOINT ./mariadb.sh
+# # Define the script to be run when the container starts
+# ENTRYPOINT ./mariadb.sh

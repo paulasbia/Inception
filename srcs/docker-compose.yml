@@ -54,13 +54,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/pde-souz/data/wordpress_volume/
+      device: /home/paula/data/wordpress_volume/
   mariadb_volume:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/pde-souz/data/mariadb_volume/
+      device: /home/paula/data/mariadb_volume/
 
 networks:
   network:

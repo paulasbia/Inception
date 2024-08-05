@@ -1,10 +1,11 @@
+#!/bin/sh
+
 #https://www.linode.com/docs/guides/how-to-install-wordpress-using-wp-cli-on-debian-10/
 
 # curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 # chmod +x wp-cli.phar
 # sudo mv wp-cli.phar /usr/local/bin/wp
 
-#!/bin/sh
 
 # WordPress installation
 if [ -f ./wp-config.php ]
@@ -15,7 +16,7 @@ else
 	echo "WordPress download"
 	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
     chmod +x wp-cli.phar
-    sudo mv wp-cli.phar /usr/local/bin/wp
+    sudo mv wp-cli.phar /usr/local/bin/wordpress
 	
 	echo "WordPress configuration"
 	sed -i "s/username_here/$SQL_USER/g" wp-config-sample.php
