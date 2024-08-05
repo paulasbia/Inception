@@ -29,4 +29,4 @@ else
     wp user create --allow-root ${WP_USR} ${WP_EMAIL} --user_pass=${WP_PASS};
 fi
 
-exec php-fpm7.4 -F
+exec "$@"
