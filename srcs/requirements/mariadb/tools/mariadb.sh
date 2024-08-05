@@ -1,8 +1,4 @@
 #!/bin/bash
-SQL_DATABASE=data
-SQL_USER=user
-SQL_PASSWORD=42lisboa
-SQL_ROOT_PASSWORD=42lisboa
 
 service mysql start;
 
