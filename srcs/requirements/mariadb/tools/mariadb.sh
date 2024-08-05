@@ -2,7 +2,7 @@
 
 if [ -d "/var/lib/mysql/$SQL_DATABASE" ]; 
 then
-	echo "Database already exists. Skipping initialization..."
+	echo "Database already exists"
 else
     service mariadb start;
 
@@ -22,4 +22,4 @@ else
 fi
 
 echo "Starting MariaDB in safe mode:"
-exec mysqld_safe --bind-address=0.0.0.0
+exec mysqld_safe --socket=/run/mysqld/mysqld.sock --bind-address=0.0.0.0

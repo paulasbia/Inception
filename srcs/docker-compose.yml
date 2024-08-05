@@ -18,7 +18,7 @@ services:
     nginx:
       container_name: nginx
       volumes:
-        - wordpress_volume:/var/www/wordpress
+        - wordpress_volume:/var/www/html
       networks:
         - network
       depends_on:
@@ -36,7 +36,7 @@ services:
       env_file: 
         - .env
       volumes:
-        - mariadb_volume:/var/www/wordpress
+        - mariadb_volume:/var/www/html
       networks:
         - network
       build: 
