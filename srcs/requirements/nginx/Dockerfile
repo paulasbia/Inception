@@ -9,9 +9,9 @@ COPY conf/nginx.conf /etc/nginx/sites-avaiable/nginx.conf
 
 RUN mkdir -p /etc/nginx/ssl
 
-RUN openssl req -x509 -nodes -out \
-    /etc/nginx/ssl/inception.crt -keyout \
-    /etc/nginx/ssl/inception.key \
+RUN openssl req -x509 -nodes \
+    -out /etc/nginx/ssl/pde-souz.crt \
+    -keyout /etc/nginx/ssl/pde-souz.key \
     -subj "/C=PT/ST=IDF/L=Lisboa/O=42/OU=42/CN=pde-souz.42.fr/UID=pde-souz"
 
 RUN mkdir -p /var/run/nginx
