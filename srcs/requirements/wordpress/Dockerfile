@@ -16,7 +16,7 @@ COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 # Create a directory for PHP runtime files to enable PHP to start correctly
 RUN mkdir /run/php
 
-COPY ./tools/install_wp.sh /usr/local/bin/
+COPY ./tools/wordpress.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/wordpress.sh
 ENTRYPOINT [ "/usr/local/bin/wordpress.sh" ]
 
