@@ -5,11 +5,13 @@ RUN apt update && \
     apt install vim -y && \
     apt install curl -y 
 
-COPY conf/nginx.conf /etc/nginx/sites-avaiable/nginx.conf
+COPY conf/nginx.conf /etc/nginx/sites-available/nginx.conf
+RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
 
 RUN mkdir -p /etc/nginx/ssl
+WORKDIR /etc/nginx/ssl/
 
-RUN openssl req -x509 -nodes \
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -out /etc/nginx/ssl/pde-souz.crt \
     -keyout /etc/nginx/ssl/pde-souz.key \
     -subj "/C=PT/ST=IDF/L=Lisboa/O=42/OU=42/CN=pde-souz.42.fr/UID=pde-souz"
