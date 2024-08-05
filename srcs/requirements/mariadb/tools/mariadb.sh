@@ -1,20 +1,25 @@
 #!/bin/bash
 
-service mariadb start;
+if [ -d "/var/lib/mysql/$SQL_DATABASE" ]; 
+then
+	echo "Database already exists. Skipping initialization..."
+else
+    service mariadb start;
 
-mariadb -e "CREATE DATABASE IF NOT EXISTS ${SQL_DATABASE};"
+    mariadb -uroot --host=localhost -e "CREATE DATABASE IF NOT EXISTS $SQL_DATABASE;"
 
-mariadb -e "CREATE USER IF NOT EXISTS ${SQL_USER}@localhost IDENTIFIED BY '${SQL_PASSWORD}';"
+    mariadb -uroot --host=localhost -e "CREATE USER IF NOT EXISTS '$SQL_USER'@'%' IDENTIFIED BY '$SQL_PASSWORD';"
 
-mariadb -e "GRANT ALL PRIVILEGES ON ${SQL_DATABASE}.* TO ${SQL_USER}@'%' IDENTIFIED BY '${SQL_PASSWORD}';"
+    mariadb -uroot --host=localhost -e "GRANT ALL PRIVILEGES ON '$SQL_DATABASE'.* TO '$SQL_USER'@'%' IDENTIFIED BY '$SQL_PASSWORD';"
 
-mariadb -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${SQL_ROOT_PASSWORD}';"
+    mariadb -uroot --host=localhost -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$SQL_ROOT_PASSWORD';"
 
-mariadb -e "FLUSH PRIVILEGES;"
+    mariadb -uroot --host=localhost -e "FLUSH PRIVILEGES;"
 
-echo "Stopping MariaDB..."
-sleep 2
-su root service mariadb stop
+    echo "Stopping MariaDB..."
+    sleep 2
+    su root service mariadb stop
+fi
 
-echo "Starting MariaDB in safe mode..."
+echo "Starting MariaDB in safe mode:"
 exec mysqld_safe --bind-address=0.0.0.0
