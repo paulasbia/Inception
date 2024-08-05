@@ -47,3 +47,22 @@ services:
       restart: on-failure
       expose: 
         - "9000"
+
+volumes:
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: '/home/pde-souz/data/wordpress'
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: '/home/pde-souz/data/mariadb'	
+
+networks:
+  networks:
+    name: inception
+    driver: bridge
