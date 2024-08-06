@@ -12,6 +12,12 @@ services:
       volumes:
         - mariadb_volume:/var/lib/mysql
       restart: unless-stopped
+      healthcheck:
+        interval: 7s
+        timeout: 35s
+        retries: 10
+        start_period: 7s
+        test: ["CMD", "mysqladmin", "ping", "--silent"]
       expose:
         - 3306
       
@@ -44,7 +50,7 @@ services:
         dockerfile: Dockerfile
       depends_on:
         mariadb:
-            condition: service_healthy
+            condition: service_healthy #https://docs.docker.com/compose/startup-order/
             restart: true
       restart: on-failure
       expose: 
