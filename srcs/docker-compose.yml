@@ -36,7 +36,7 @@ services:
       env_file: 
         - .env
       volumes:
-        - mariadb_volume:/var/www/html
+        - wordpress_volume:/var/www/html
       networks:
         - network
       build: 
