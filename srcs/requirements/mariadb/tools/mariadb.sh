@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#https://bertvv.github.io/cheat-sheets/Bash.html
+set -euo pipefail
+
 if [ -d "/var/lib/mysql/$DB_DATABASE" ]; 
 then
 	echo "Database already exists"

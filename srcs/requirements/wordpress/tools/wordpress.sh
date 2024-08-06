@@ -8,9 +8,6 @@
 
 
 # WordPress installation
-mv ../wordpress/* .
-rm -rf ../wordpress
-cp wp-config-sample.php wp-config.php
 if [ -f ./wp-config.php ]
 then
 	echo "WordPress already downloaded!"
@@ -21,6 +18,10 @@ else
     chmod +x wp-cli.phar
 	mv wp-cli.phar /usr/local/bin/wp
 	
+	mv /wordpress/* .
+	rm -rf ../wordpress
+	cp wp-config-sample.php wp-config.php
+
 	echo "WordPress configuration"
 	sed -i "s/username_here/$DB_USER/g" wp-config.php
 	sed -i "s/password_here/$DB_PASSWORD/g" wp-config.php
