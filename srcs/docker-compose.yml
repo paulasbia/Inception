@@ -13,7 +13,7 @@ services:
         - mariadb_volume:/var/lib/mysql
       restart: unless-stopped
       expose:
-        - "3306"
+        - 3306
       
     nginx:
       container_name: nginx
@@ -46,7 +46,7 @@ services:
         - mariadb
       restart: on-failure
       expose: 
-        - "9000"
+        - 9000
 
 volumes:
   wordpress_volume:
@@ -64,5 +64,5 @@ volumes:
 
 networks:
   network:
-    name: inception42
+    name: inception
     driver: bridge

@@ -9,8 +9,8 @@
 
 # WordPress installation
 mv ../wordpress/* .
-
 rm -rf ../wordpress
+cp wp-config-sample.php wp-config.php
 if [ -f ./wp-config.php ]
 then
 	echo "WordPress already downloaded!"
@@ -19,10 +19,13 @@ else
 	echo "WordPress download"
 	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
     chmod +x wp-cli.phar
+	mv wp-cli.phar /usr/local/bin/wp
 	
 	echo "WordPress configuration"
-	./wp-cli.phar core download --allow-root
-	./wp-cli.phar config create --dbname=${SQL_DATABASE} --dbuser=${SQL_USER} --dbpass=${SQL_PASSWORD} --dbhost=${SQL_HOSTNAME} --allow-root
+	sed -i "s/username_here/$SQL_USER/g" wp-config.php
+	sed -i "s/password_here/$SQL_PASSWORD/g" wp-config.php
+	sed -i "s/database_name_here/$SQL_NAME/g" wp-config.php
+	sed -i "s/localhost/$SQL_HOSTNAME/g" wp-config.php
     echo "Installing WordPress:"
 	wp core install --allow-root --url=${DOMAIN_NAME} --title="Inception" --admin_user=${WP_ADMIN_USER} --admin_password=${WP_ADMIN_PASS} --admin_email=${WP_ADMIN_EMAIL}
 	echo "Creating a USER:"
