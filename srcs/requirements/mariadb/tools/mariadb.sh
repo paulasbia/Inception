@@ -13,9 +13,9 @@ else
 
     mariadb -uroot --host=localhost -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD';"
 
-    mariadb -uroot --host=localhost -e "GRANT ALL PRIVILEGES ON '$DB_DATABASE'.* TO '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD';"
+    mariadb -uroot --host=localhost -e "GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD';"
 
-    mariadb -uroot --host=localhost -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$DB_ROOT_PASSWORD';"
+    mariadb -uroot --host=localhost -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$DB_ROOT_PASSWORD';"
 
     mariadb -uroot --host=localhost -e "FLUSH PRIVILEGES;"
 
