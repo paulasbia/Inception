@@ -12,7 +12,8 @@ if [ -f ./wp-config.php ]
 then
 	echo "WordPress already downloaded!"
 else
-	
+	touch /var/log/fpm-php.www.log && chmod 666 /var/log/fpm-php.www.log
+
 	echo "WordPress download"
 	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
     chmod +x wp-cli.phar
@@ -25,7 +26,7 @@ else
 	echo "WordPress configuration"
 	sed -i "s/username_here/$DB_USER/g" wp-config.php
 	sed -i "s/password_here/$DB_PASSWORD/g" wp-config.php
-	sed -i "s/database_name_here/$DB_NAME/g" wp-config.php
+	sed -i "s/database_name_here/$DB_HOSTNAME/g" wp-config.php
 	sed -i "s/localhost/$DB_HOSTNAME/g" wp-config.php
     echo "Installing WordPress:"
 	wp core install --allow-root --url=${DOMAIN_NAME} --title="Inception" --admin_user=${WP_ADMIN_USER} --admin_password=${WP_ADMIN_PASS} --admin_email=${WP_ADMIN_EMAIL}
