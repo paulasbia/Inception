@@ -8,6 +8,9 @@
 
 
 # WordPress installation
+mv ../wordpress/* .
+
+rm -rf ../wordpress
 if [ -f ./wp-config.php ]
 then
 	echo "WordPress already downloaded!"
@@ -26,4 +29,5 @@ else
     wp user create --allow-root ${WP_USR} ${WP_EMAIL} --user_pass=${WP_PASS};
 fi
 
+/usr/sbin/php-fpm7.4 -F
 exec "$@"

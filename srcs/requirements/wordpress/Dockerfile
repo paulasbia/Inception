@@ -21,4 +21,4 @@ RUN chmod +x wordpress.sh
 
 WORKDIR /var/www/html/
 
-CMD ["/usr/sbin/php-fpm7.4", "-F"]
+CMD ["/wordpress.sh"]
