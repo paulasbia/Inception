@@ -21,4 +21,4 @@ RUN chmod +x wordpress.sh
 
 WORKDIR /var/www/html/
 
-CMD ["/wordpress.sh"]
+ENTRYPOINT /wordpress.sh
