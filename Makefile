@@ -1,16 +1,17 @@
-
 all: up
 
-up: setup
+up:
 	docker compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
 	docker compose -f ./srcs/docker-compose.yml down --remove-orphans 
 
 clean: down
-	# docker builder prune
-	docker system prune -f -a --volumes
+	docker system prune --volumes -f
+
+destroy:
+	sudo rm -r /home/pde-souz/data/mariadb_volume/* && sudo rm -r /home/pde-souz/data/wordpress_volume/*
 
 re: down up
 
-.PHONY: all up setup clean re
+.PHONY: all up clean re
